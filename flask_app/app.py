@@ -16,6 +16,7 @@ app = Flask(__name__)
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:oui@localhost:5432/flask_db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -62,21 +63,27 @@ def success():
     if request.method == 'POST':
         f = request.files['file']
         if f and allowed_file(f.filename):
-            filepath = os.path.join('uploaded_data', f.filename)
-            f.save(os.path.join('uploaded_data', f.filename))  
-            #parseCSV(filepath)
-            subprocess.run(["bash", "-c", f"cd flask_app && bash bash/migrate.sh"])
+            filepath = os.path.join('../uploaded_data', f.filename)
+            f.save(os.path.join('../uploaded_data', f.filename))
+            #subprocess.run(["bash", "bash/migrate.sh"])
             with open(filepath) as file_obj:
                 # Convert the data to a dictionary using the csv module
                 data = csv.DictReader(file_obj)
                 print(data)
                 # Iterate over the rows of the CSV file and create a new car for each row
                 for row in data:
-                    new_data = Data(id=row['id'], Bearing1=row['Bearing 1'], Bearing2=row['Bearing 2'], Bearing3=row['Bearing 3'], Bearing4=row['Bearing 4'])
-                    db.session.add(new_data)
-            db.session.commit()
+                    existing_data = Data.query.filter_by(id=row['id']).first()
+                    if existing_data:
+                        existing_data.Bearing1 = row['Bearing 1']
+                        existing_data.Bearing2 = row['Bearing 2']
+                        existing_data.Bearing3 = row['Bearing 3']
+                        existing_data.Bearing4 = row['Bearing 4']
+                    else:
+                        new_data = Data(id=row['id'], Bearing1=row['Bearing 1'], Bearing2=row['Bearing 2'], Bearing3=row['Bearing 3'], Bearing4=row['Bearing 4'])
+                        db.session.add(new_data)
+                db.session.commit()
             return {"message": "Oui youpi."}
-        else:
+        else: 
             return {"error": "Not a CSV file"}
         
   
