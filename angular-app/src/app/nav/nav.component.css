@@ -1,0 +1,26 @@
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-right: 3%;
+}
+
+#logo img {
+    height: 118px;
+}
+
+.link {
+    font-family: 'Futura Medium';
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,29 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 672px;
+    border-radius: 10px;
+}
+
+form #user {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+}
+
+#box {
+    padding-top: 90px;
+    background: url(../../assets/login/box.png) no-repeat center;
+    background-size: contain;
+    height: 518px;
+    width: 675px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+label {
+    display: none;
+}
