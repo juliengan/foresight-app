@@ -1,3 +1,4 @@
+#%%
 import csv
 import time
 import io
@@ -16,6 +17,10 @@ import pandas as pd
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+
+if __name__ == '__main__':
+    app.run()
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:oui@localhost:5432/flask_db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
@@ -64,7 +69,9 @@ def success():
                     instance = model_class(**dict(zip(header, row)))
                     db.session.add(instance)
                 db.session.commit()
-            return {"message": "Oui youpi."}
+
+            
+            return render_template("form.html")
         else: 
             return {"error": "Not a CSV file"}
 
