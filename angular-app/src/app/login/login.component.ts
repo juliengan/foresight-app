@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   ngOnInit() {
-    document.body.classList.add('bg-login');
+    document.body.classList.add('bg');
   }
 
   ngOnDestroy() {

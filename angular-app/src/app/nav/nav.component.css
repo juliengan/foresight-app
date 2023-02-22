@@ -7,14 +7,19 @@ nav {
 nav div {
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     padding-right: 3%;
 }
 
+nav div div .link {
+    padding: 0px 20px;
+}
+
 #logo img {
     height: 118px;
+    padding-right: 20px;
 }
 
 .link {

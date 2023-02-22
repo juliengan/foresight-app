@@ -3,8 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
+import { UploadComponent } from './upload/upload.component';
+import { BoardComponent } from './board/board.component';
 
-const routes: Routes = [{ path: 'login', component: LoginComponent }];
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'upload', component: UploadComponent },
+  { path: 'board', component: BoardComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -10,7 +10,7 @@
 }
 
 /******** BACKGROUND ********/
-.bg-login {
+.bg {
     background: url('./assets/login/login-background.jpg') no-repeat center fixed;
     background-size: cover;
 }

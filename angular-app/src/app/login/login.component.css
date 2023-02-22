@@ -13,10 +13,10 @@ form #user {
 }
 
 #box {
-    padding-top: 90px;
-    background: url(../../assets/login/box.png) no-repeat center;
-    background-size: contain;
-    height: 518px;
+    margin-top: 90px;
+    background: #9A8C98;
+    border-radius: 50px;
+    height: 450px;
     width: 675px;
     display: flex;
     justify-content: center;
@@ -26,4 +26,72 @@ form #user {
 
 label {
     display: none;
+}
+
+.input-wrap {
+    width: 80%;
+}
+
+input {
+    all: unset;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    margin: 10px 0px;
+    width: 100%;
+    font-family: 'Futura Medium';
+    font-size: 28px;
+    color: white;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px transparent inset;
+    /* Change the color to your own background color */
+    -webkit-text-fill-color: #333;
+    font-family: 'Futura Medium';
+    font-size: 28px;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px transparent inset;
+    /*your box-shadow*/
+    -webkit-text-fill-color: #333;
+    font-family: 'Futura Medium';
+    font-size: 28px;
+}
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: white !important;
+    font-family: 'Futura Medium';
+    font-size: 28px;
+}
+
+.login-title {
+    font-family: 'Futura Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    margin-top: 0;
+    color: #FFFFFF;
+}
+
+#submit {
+    background: #F2E9E4;
+    border-radius: 0px 0px 28px 28px;
+    font-family: 'Futura Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 53px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    width: 431px;
+    height: 89px;
+    cursor: pointer;
 }
