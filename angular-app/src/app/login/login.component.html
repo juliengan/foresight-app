@@ -1,16 +1,17 @@
 <div class="screen">
     <div class="container">
-        <form method="post">
+        <form method="post" (ngSubmit)="onSubmit()">
             <img id="user" src="../../assets/login/user.png">
             <div id="box">
                 <p class="login-title">Login to your account</p>
+                <p *ngIf="loginError">{{ loginError }}</p>
                 <div class="input-wrap">
                     <label for="email">Email</label>
-                    <input type="email" placeholder="E-mail" name="email" />
+                    <input type="email" placeholder="E-mail" name="email" [(ngModel)]="email" required />
                 </div>
                 <div class="input-wrap">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="Password" name="password" />
+                    <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required />
                 </div>
             </div>
             <div id="btn">

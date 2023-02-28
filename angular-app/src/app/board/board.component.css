@@ -1,0 +1,77 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#box {
+    margin-top: 90px;
+    background: #9A8C98;
+    border-radius: 50px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#box h1 {
+    font-family: 'Futura Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    margin-top: 0;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+#box h3 {
+    font-family: 'Futura Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: 0;
+    color: #FFFFFF;
+}
+
+select {
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid black;
+    font-family: 'Futura Medium';
+    font-size: 20px;
+    margin: 0px 40px;
+    word-wrap: normal;
+    padding-right: 10px;
+    margin-bottom: 30px;
+}
+
+select option {
+    font-family: 'Futura Medium';
+    font-size: 20px;
+    margin: 0px 40px;
+    word-wrap: normal;
+    padding-right: 10px;
+}
+
+#submit {
+    background: #F2E9E4;
+    border-radius: 0px 0px 28px 28px;
+    font-family: 'Futura Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 53px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    width: 431px;
+    height: 89px;
+    cursor: pointer;
+}

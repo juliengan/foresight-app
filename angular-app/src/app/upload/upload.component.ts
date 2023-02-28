@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { ModalPopupService } from '../providers/modalPopup.service';
-import { PopupComponent } from '../popup/popup.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TestComponent } from '../test/test.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UploadService } from './upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -9,10 +10,22 @@ import { PopupComponent } from '../popup/popup.component';
   styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent implements OnInit {
-  files: any[] = [];
-  dialogRef: MatDialogRef<any> | undefined;
+  testDialog!: TestComponent;
 
-  constructor(private modalPopupService: ModalPopupService) {}
+  openDialog(content: any): void {
+    this.testDialog.open(content);
+  }
+
+  files: any[] = [];
+
+  constructor(
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private UploadService: UploadService,
+    private router: Router
+  ) {
+    this.testDialog = new TestComponent(config, modalService);
+  }
 
   ngOnInit() {
     document.body.classList.add('bg');
@@ -21,15 +34,15 @@ export class UploadComponent implements OnInit {
   /**
    * on file drop handler
    */
-  onFileDropped($event: any) {
-    this.prepareFilesList($event);
+  onFileDropped($event: any, content: any) {
+    this.prepareFilesList($event, content);
   }
 
   /**
    * handle file from browsing
    */
-  fileBrowseHandler($event: any) {
-    this.prepareFilesList($event.target.files[0]);
+  fileBrowseHandler($event: any, content: any) {
+    this.prepareFilesList($event.target.files[0], content);
   }
 
   /**
@@ -43,7 +56,7 @@ export class UploadComponent implements OnInit {
   /**
    * Simulate the upload process
    */
-  uploadFilesSimulator(index: number) {
+  uploadFilesSimulator(index: number, content: any) {
     setTimeout(() => {
       if (index === this.files.length) {
         return;
@@ -51,8 +64,8 @@ export class UploadComponent implements OnInit {
         const progressInterval = setInterval(() => {
           if (this.files[index].progress === 100) {
             clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-            this.openDialog();
+            this.uploadFilesSimulator(index + 1, content);
+            this.openDialog(content);
           } else {
             this.files[index].progress += 5;
           }
@@ -61,21 +74,11 @@ export class UploadComponent implements OnInit {
     }, 1000);
   }
 
-  openDialog() {
-    this.dialogRef = this.modalPopupService.openPopup<PopupComponent>(
-      PopupComponent,
-      null
-    );
-    this.dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-    });
-  }
-
   /**
    * Convert Files list to normal array list
    * @param files (Files List)
    */
-  prepareFilesList(files: any) {
+  prepareFilesList(files: any, content: any) {
     var array: Array<any> = [];
     array.push(files);
     console.log(files);
@@ -83,7 +86,7 @@ export class UploadComponent implements OnInit {
       item.progress = 0;
       this.files.push(item);
     }
-    this.uploadFilesSimulator(0);
+    this.uploadFilesSimulator(0, content);
   }
 
   /**
@@ -100,5 +103,23 @@ export class UploadComponent implements OnInit {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  uploadFile() {
+    this.UploadService.upload(this.files[0]).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.onClickNo();
+          this.router.navigate(['/board']);
+        }
+      },
+      (error: any) => {
+        console.error('Error uploading file: ', error);
+      }
+    );
+  }
+
+  onClickNo() {
+    this.testDialog.close();
   }
 }

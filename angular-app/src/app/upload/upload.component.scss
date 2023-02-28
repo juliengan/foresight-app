@@ -1,173 +1,231 @@
 .upload-zone {
-    width: 70vw;
-    height: 70vh;
-    background: #F2E9E4;
-    border-radius: 45px;
-    border: 2px solid #F2E9E4;
-    outline: 2px dashed black;
-    outline-offset: -30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 70vw;
+  height: 70vh;
+  background: #f2e9e4;
+  border-radius: 45px;
+  border: 2px solid #f2e9e4;
+  outline: 2px dashed black;
+  outline-offset: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+::ng-deep .modal-content {
+  background: #d9d9d9;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 44px;
+  font-family: "Futura Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  width: 782px;
+  height: 339px;
+  color: #000000;
+}
+
+::ng-deep .modal-footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5);
+  background-color: transparent;
+  border-top: none;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+::ng-deep .modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+::ng-deep .modal-footer .btn:first-child {
+  background: #c9ada7;
+  border-radius: 12px;
+  border: none;
+  width: 221px;
+  height: 61px;
+  margin-right: 80px;
+}
+
+::ng-deep .modal-footer .btn:last-child {
+  background: white;
+  border-radius: 12px;
+  border: none;
+  width: 221px;
+  height: 61px;
+}
+
+::ng-deep .modal-dialog {
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - (1.75rem * 2));
 }
 
 .container {
-    width: 450px;
-    height: 200px;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    margin: 0 auto;
+  width: 450px;
+  height: 200px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  label {
+    font-family: "Futura Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 40px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-  
-    input {
-      opacity: 0;
-      position: absolute;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-  
-    label {
-        font-family: 'Futura Medium';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 40px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        border: 5px solid #C9ADA7;
-border-radius: 13px;
-width: 454px;
-height: 94px;
-display: flex;
+    text-align: center;
+    border: 5px solid #c9ada7;
+    border-radius: 13px;
+    width: 454px;
+    height: 94px;
+    display: flex;
     align-items: center;
     justify-content: center;
-        color: #000000;
-        
-    }
-  
-    h3 {
-        font-family: 'Futura Medium';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 40px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        
-        color: #000000;
-        
+    color: #000000;
+  }
+
+  h3 {
+    font-family: "Futura Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+  }
+
+  img {
+    width: 181px;
+    height: 180px;
+  }
+}
+
+.fileover {
+  animation: shake 1s;
+  animation-iteration-count: infinite;
+}
+
+.files-list {
+  margin-top: 1.5rem;
+  width: 80%;
+  position: absolute;
+  bottom: 10px;
+
+  .single-file {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .delete {
+      display: flex;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      align-self: flex-end;
     }
 
-    img{
-        width: 181px;
-        height: 180px;
+    display: flex;
+    flex-grow: 1;
+
+    .name {
+      font-family: "Futura Medium";
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      margin: 0;
+    }
+
+    .size {
+      font-size: 12px;
+      font-weight: 500;
+      color: #a4a4a4;
+      margin: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .info {
+      width: 100%;
     }
   }
-  
-  .fileover {
-    animation: shake 1s;
-    animation-iteration-count: infinite;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
   }
-  
-  .files-list {
-    margin-top: 1.5rem;
-    width: 80%;
-    position: absolute;
-    bottom: 10px;
-  
-    .single-file {
-      display: flex;
-      padding: 0.5rem;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-  
-      .delete {
-        display: flex;
-        margin-left: 0.5rem;
-        cursor: pointer;
-        align-self: flex-end;
-      }
-  
-  
-      display: flex;
-      flex-grow: 1;
-  
-      .name {
-        font-family: "Futura Medium";
-        font-size: 14px;
-        font-weight: 500;
-        color: white;
-        margin: 0;
-      }
-  
-      .size {
-        font-size: 12px;
-        font-weight: 500;
-        color: #a4a4a4;
-        margin: 0;
-        margin-bottom: 0.25rem;
-      }
-  
-      .info {
-        width: 100%
-      }
-    }
+
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
   }
-  
-  /* Shake animation */
-  @keyframes shake {
-    0% {
-      transform: translate(1px, 1px) rotate(0deg);
-    }
-  
-    10% {
-      transform: translate(-1px, -2px) rotate(-1deg);
-    }
-  
-    20% {
-      transform: translate(-3px, 0px) rotate(1deg);
-    }
-  
-    30% {
-      transform: translate(3px, 2px) rotate(0deg);
-    }
-  
-    40% {
-      transform: translate(1px, -1px) rotate(1deg);
-    }
-  
-    50% {
-      transform: translate(-1px, 2px) rotate(-1deg);
-    }
-  
-    60% {
-      transform: translate(-3px, 1px) rotate(0deg);
-    }
-  
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg);
-    }
-  
-    80% {
-      transform: translate(-1px, -1px) rotate(1deg);
-    }
-  
-    90% {
-      transform: translate(1px, 2px) rotate(0deg);
-    }
-  
-    100% {
-      transform: translate(1px, -2px) rotate(-1deg);
-    }
+
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
   }
+
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}

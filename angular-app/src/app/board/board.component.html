@@ -1,1 +1,73 @@
-<p>board works!</p>
+<div class="screen">
+    <div class="container">
+        <form method="post" action="predict" (ngSubmit)="onSubmit()">
+            <div id="box">
+                <h1>Data to remove from dataset</h1>
+                <div>
+                    <select id="operator" name="operator">
+                        <option value="Select day of week">Day of Week</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+
+                    <select id="operator" name="operator" action="predict">
+                        <option value="Month">Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <h3>Long format ? (Several ids or machines defined in a column)</h3>
+                <select id="operator" name="operator" action="predict">
+                    <option value="Features">Features</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+
+                <h3>Categorical Features</h3>
+                <!--TODO : Récupérer les variables du dataset importé-->
+                <select id="operator" name="operator" action="predict">
+                    <option value="Features">Features</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+            <div id="btn">
+                <button id="submit" type="submit">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>

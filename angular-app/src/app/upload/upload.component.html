@@ -1,8 +1,19 @@
 <div class="screen">
     <div class="upload-container">
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-body">
+                <p>Would you like to train the model with<br>the uploaded data ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="uploadFile()">YES</button>
+                <button type="button" class="btn btn-outline-dark" (click)="onClickNo()">NO</button>
+            </div>
+        </ng-template>
+
         <div class="upload-zone">
-            <div class="container" appDnd (fileDropped)="onFileDropped($event)">
-                <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+            <div class="container" appDnd (fileDropped)="onFileDropped($event, content)">
+                <input type="file" #fileDropRef id="fileDropRef" multiple
+                    (change)="fileBrowseHandler($event, content)" />
                 <img src="../../assets/input/nuage.png">
                 <label for="fileDropRef">Browse file</label>
                 <h3>or drag and drop file here</h3>

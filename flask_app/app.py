@@ -15,17 +15,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import pandas as pd
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
 
 app = Flask(__name__)
 
-
-if __name__ == '__main__':
-    app.run()
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:oui@localhost:5432/flask_db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 ALLOWED_EXTENSIONS = {'csv'}
+cors = CORS(app, resources={r"/upload": {"origins": "http://localhost:4200"}})
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -74,12 +73,13 @@ def predict():
 
 
 
-@app.route('/success', methods=['POST'])  
-def success():  
+@app.route('/upload', methods=['POST'])  
+def upload():  
     if request.method == 'POST':
         f = request.files['file']
         if f and allowed_file(f.filename):
-            filepath = os.path.join('../uploaded_data', f.filename)
+            print(f.filename)
+            filepath = os.path.join('uploaded_data', f.filename)
             f.save(filepath)
             with open(filepath) as file_obj:
                 metadata = db.metadata
@@ -110,10 +110,12 @@ def success():
                     db.session.add(instance)
                 db.session.commit()
 
-            
-            return render_template("form.html")
+            return jsonify({'success': True, 'message': 'File uploaded successfully'})
         else: 
             return {"error": "Not a CSV file"}
 
 if __name__ == '__main__':  
     app.run(debug=True)
+
+
+
