@@ -2,9 +2,9 @@
     <div id="#nav">
         <div>
             <a id="logo"><img src="../../assets/logo2.png"></a>
-            <a class="link" routerLink="/upload">Upload</a>
-            <a class="link" routerLink="/board">Board</a>
+            <a class="link" routerLink="/upload" *ngIf="isLoggedIn">Upload</a>
+            <a class="link" routerLink="/board" *ngIf="isLoggedIn">Board</a>
         </div>
-        <a class="link" routerLink="/login">Login</a>
+        <a class="link" routerLink="/login" *ngIf="!isLoggedIn">Login</a>
     </div>
 </nav>

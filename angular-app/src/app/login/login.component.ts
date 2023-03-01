@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         if (res.success) {
+          this.LoginService.setLoggedIn(true);
           this.router.navigate(['/board']);
         }
       },
