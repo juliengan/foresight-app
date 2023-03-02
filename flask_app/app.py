@@ -125,25 +125,27 @@ def get_data():
     if not table_name:
         abort(404)
     
-    # Get the model class for the table
-    class Data(db.Model):
-        __tablename__ = table_name
-        # Define the columns of the table dynamically
-        metadata = db.MetaData()
-        table = db.Table(__tablename__, metadata, autoload=True, autoload_with=db.engine, extend_existing = True)
-        for column in table.columns:
-            locals()[column.name] = db.Column(column.type, primary_key=column.primary_key)
+    # Define the columns of the table dynamically
+    metadata = db.MetaData()
+    table = db.Table(table_name, metadata, autoload=True, autoload_with=db.engine, extend_existing=True)
+    columns = [column.name for column in table.columns]
 
-    # Query the database for all instances of the model class
-    instances = Data.query.all()
+    # Query the database for the first 20 rows of the table
+    query = db.session.query(*[table.columns[column] for column in columns]).limit(20)
+    rows = query.all()
 
-    # Convert the instances to a list of dictionaries
+    # Convert the rows to a list of dictionaries
     data = []
-    for instance in instances:
-        data.append({col: getattr(instance, col) for col in header})
+    for row in rows:
+        data.append({columns[i]: row[i] for i in range(len(row))})
 
     # Return the data as a JSON response
     return jsonify(data)
+
+
+
+
+
     
     
 
