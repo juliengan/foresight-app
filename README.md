@@ -10,7 +10,7 @@ Python, Angular
 <h2>Goal : Deploy a Predictive maintenance solution for enterprises</h2>
 
 <h3>Overall :</h3> 
-<p>- Extract our autoencoder model (see https://github.com/MathysGoncalves/Automated-PdM for more details)</p>
+<p>- Extract our autoencoder model (see [https://github.com/MathysGoncalves/Automated-PdM](https://github.com/MathysGoncalves/Automated-PdM/tree/dev-mathys) for more details)</p>
 <p>- Implement our Angular website for our clients</p>
 
 <h3>🏡 Code Architecture 🏡</h3>
