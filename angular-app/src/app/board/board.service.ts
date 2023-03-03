@@ -15,12 +15,11 @@ export class BoardService {
 
   getTables(): Observable<string[]> {
     const url = 'http://localhost:5000/get_tables';
-    const body = {};
 
-    return this.http.get<string[]>(url, body);
+    return this.http.get<string[]>(url);
   }
 
-  filter(table_name : string, columns : string[]): Observable<any> {
+  filter(table_name: string, columns: string[]): Observable<any> {
     const url = 'http://localhost:5000/filter_features';
     const body = { table_name: table_name, columns: columns };
     return this.http.post(url, body);
@@ -28,7 +27,10 @@ export class BoardService {
 
   trainAndPredict(train_table_name: string): Observable<any> {
     const url = 'http://localhost:5000/train_and_predict';
-    const body = { train_table_name: train_table_name };
+    const regex = /bearing_\d+/; // Match 'bearing_' followed by one or more digits
+    let test_table_name = train_table_name.match(regex)?.[0]; // Extract the first match
+    test_table_name += '_test';
+    const body = { train_table_name: train_table_name, test_table_name: test_table_name };
     return this.http.post(url, body);
   }
 }

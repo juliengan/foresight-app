@@ -47,7 +47,17 @@ export class BoardComponent implements OnInit {
   onSubmit() {
     console.log(this.selectedColumns);
     let checkedColumns = this.getCheckedColumns();
-    this.BoardService.filter(this.selectedTable, checkedColumns).subscribe(
+    // this.BoardService.filter(this.selectedTable, checkedColumns).subscribe(
+    //   (res: any) => {
+    //     if (res.success) {
+    //       console.log('incrr');
+    //     }
+    //   },
+    //   (error: any) => {
+    //     console.error('Error : ', error);
+    //   }
+    // );
+    this.BoardService.trainAndPredict(this.selectedTable).subscribe(
       (res: any) => {
         if (res.success) {
           console.log('incrr');
