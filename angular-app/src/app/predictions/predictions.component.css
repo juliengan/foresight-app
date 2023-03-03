@@ -1,0 +1,20 @@
+.container {
+    background: #f2e9e4;
+    border-radius: 45px;
+    border: 2px solid #f2e9e4;
+    outline: 2px dashed black;
+    outline-offset: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 70px;
+}
+
+h1 {
+    font-family: "Futura Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 40px;
+}

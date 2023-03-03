@@ -8,6 +8,7 @@ import { BoardComponent } from './board/board.component';
 import { TestComponent } from './test/test.component';
 
 import { AuthGuard } from './auth.guard';
+import { PredictionsComponent } from './predictions/predictions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'upload', component: UploadComponent },
   { path: 'board', component: BoardComponent },
   { path: 'test', component: TestComponent },
+  { path: 'predictions/:table_name', component: PredictionsComponent },
 ];
 
 @NgModule({
