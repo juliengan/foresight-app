@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   loginUser(email: string, password: string) {
-    const url = 'http://localhost:8085/users/login';
+    const url = 'http://localhost:8086/users/login';
     const body = { email: email, password: password };
 
     const httpOptions = {
