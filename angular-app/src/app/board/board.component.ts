@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from './board.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -12,7 +13,7 @@ export class BoardComponent implements OnInit {
   public selectedTable: string = '';
   public columns: string[] = [];
   public selectedColumns: string[] = [];
-  constructor(private BoardService: BoardService) {}
+  constructor(private BoardService: BoardService, private router: Router) {}
 
   ngOnInit() {
     document.body.classList.add('bg');
@@ -47,20 +48,24 @@ export class BoardComponent implements OnInit {
   onSubmit() {
     console.log(this.selectedColumns);
     let checkedColumns = this.getCheckedColumns();
-    // this.BoardService.filter(this.selectedTable, checkedColumns).subscribe(
-    //   (res: any) => {
-    //     if (res.success) {
-    //       console.log('incrr');
-    //     }
-    //   },
-    //   (error: any) => {
-    //     console.error('Error : ', error);
-    //   }
-    // );
-    this.BoardService.trainAndPredict(this.selectedTable).subscribe(
+    let new_table_train = ""
+    let new_table_test = ""
+    this.BoardService.filter(this.selectedTable, checkedColumns).subscribe(
       (res: any) => {
         if (res.success) {
-          console.log('incrr');
+          new_table_train = res.new_table_train;
+          new_table_test = res.new_table_test;
+          this.BoardService.trainAndPredict(new_table_train, new_table_test).subscribe(
+            (res: any) => {
+              if (res.success) {
+                let result = new_table_test + "_Result"
+                this.router.navigate(["/predictions", result]);
+              }
+            },
+            (error: any) => {
+              console.error('Error : ', error);
+            }
+          );
         }
       },
       (error: any) => {
