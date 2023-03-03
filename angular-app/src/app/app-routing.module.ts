@@ -13,10 +13,10 @@ import { PredictionsComponent } from './predictions/predictions.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'upload', component: UploadComponent },
-  { path: 'board', component: BoardComponent },
-  { path: 'test', component: TestComponent },
-  { path: 'predictions/:table_name', component: PredictionsComponent },
+  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard]},
+  { path: 'board', component: BoardComponent, canActivate: [AuthGuard] },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
+  { path: 'predictions/:table_name', component: PredictionsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

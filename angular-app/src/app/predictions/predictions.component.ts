@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PredictionsService } from './predictions.service';
-import { Chart, ChartOptions } from 'chart.js';
+import { ChartOptions } from 'chart.js';
 import { ActivatedRoute, Params } from '@angular/router';
+import {Chart} from 'chart.js/auto';
 
 @Component({
   selector: 'app-predictions',
@@ -26,7 +27,7 @@ export class PredictionsComponent implements OnInit {
       (params: Params) => (this.table_name = params['table_name'])
     );
     this.predictionsServices
-      .getData('bearing_1677840437_test_Result')
+      .getData(this.table_name)
       .subscribe((res: any) => {
         console.log(res);
         this.label = res.map((d: any) => d.Anomaly);
