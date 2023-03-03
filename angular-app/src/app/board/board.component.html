@@ -2,6 +2,9 @@
     <div class="container">
         <form method="post" action="predict" (ngSubmit)="onSubmit()">
             <div id="box">
+                <select [ngModel]="selectedTable" (ngModelChange)="onChange($event)" name="table">
+                    <option *ngFor="let table of tables" [value]="table">{{ table }}</option>
+                </select>
                 <h1>Data to remove from dataset</h1>
                 <div>
                     <select id="operator" name="operator">
@@ -69,5 +72,23 @@
             </div>
 
         </form>
+    </div>
+</div>
+<div class="screen">
+    <div class="large-container">
+        <h1>Sample of the selected data</h1>
+        <div class="table">
+            <table mat-table [dataSource]="data">
+                <!-- Column definitions -->
+                <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+                    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+                    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+                </ng-container>
+
+                <!-- Table rows -->
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
+        </div>
     </div>
 </div>
