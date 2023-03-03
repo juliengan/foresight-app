@@ -20,6 +20,12 @@ export class BoardService {
     return this.http.get<string[]>(url, body);
   }
 
+  filter(table_name : string, columns : string[]): Observable<any> {
+    const url = 'http://localhost:5000/filter_features';
+    const body = { table_name: table_name, columns: columns };
+    return this.http.post(url, body);
+  }
+
   trainAndPredict(train_table_name: string): Observable<any> {
     const url = 'http://localhost:5000/train_and_predict';
     const body = { train_table_name: train_table_name };

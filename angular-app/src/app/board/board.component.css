@@ -9,12 +9,13 @@ form {
     margin-top: 90px;
     background: #9A8C98;
     border-radius: 50px;
-    height: 450px;
+    /* height: 450px; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
+    padding: 40px 70px;
 }
 
 #box h1 {
@@ -81,4 +82,57 @@ select option {
     padding: 40px 70px;
     background-color: #9a8c98;
     border-radius: 25px;
+}
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    margin: 0;
+
+    font: inherit;
+    color: black;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid black;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    /* Windows High Contrast Mode */
+    background-color: CanvasText;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+label {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    align-items: end;
+    padding-right: 10px;
+}
+
+label:nth-last-child() {
+    padding-right: 0;
+}
+
+.columns-container {
+    display: flex;
+    flex-wrap: nowrap;
 }

@@ -11,6 +11,7 @@ export class BoardComponent implements OnInit {
   public tables: string[] = [];
   public selectedTable: string = '';
   public columns: string[] = [];
+  public selectedColumns: string[] = [];
   constructor(private BoardService: BoardService) {}
 
   ngOnInit() {
@@ -44,7 +45,9 @@ export class BoardComponent implements OnInit {
   }
 
   onSubmit() {
-    this.BoardService.trainAndPredict(this.selectedTable).subscribe(
+    console.log(this.selectedColumns);
+    let checkedColumns = this.getCheckedColumns();
+    this.BoardService.filter(this.selectedTable, checkedColumns).subscribe(
       (res: any) => {
         if (res.success) {
           console.log('incrr');
@@ -54,5 +57,17 @@ export class BoardComponent implements OnInit {
         console.error('Error : ', error);
       }
     );
+  }
+
+  getCheckedColumns(): string[] {
+    let checkedColumns: string[] = [];
+
+    for (let i = 0; i < this.selectedColumns.length; i++) {
+      if (this.selectedColumns[i]) {
+        checkedColumns.push(this.columns[i]);
+      }
+    }
+
+    return checkedColumns;
   }
 }
