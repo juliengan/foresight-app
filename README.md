@@ -1,19 +1,28 @@
-# 4Sight : For a better industrial maintenance
+# 👁 4Sight : For a better industrial maintenance 👁
 
 Lucie Bottin - Mathys Goncalves - Céline Khauv - Nour-Eddine Oubenami - Neal Christopher Louokdom Fokam - Julie Ngan
 
 M2-APP-BDML
 
+EFREI Paris
+
 ## Technologies 
-Python, Angular
+Angular, PostgreSQL
 
 <h2>Goal : Deploy a Predictive maintenance solution for enterprises</h2>
 
 <h3>Overall :</h3> 
 <p>- Extract our autoencoder model (see [https://github.com/MathysGoncalves/Automated-PdM](https://github.com/MathysGoncalves/Automated-PdM/tree/dev-mathys) for more details)</p>
 <p>- Implement our Angular website for our clients</p>
+<p>- Connect it to PostgreSQL to handle authentication and save user datasets</p>
 
-<h3>🏡 Code Architecture 🏡</h3>
+<h2>User Endpoints</h2>
+<p>1. Login</p>
+<p>2. Import the dataset (time series) of the machines</p>
+<p>3. Speficy on which features to focus</p>
+<p>4. Display predictions</p>
+
+<h2>🏡 Code Architecture 🏡</h2>
 
 ------------
     ├── angular-app
@@ -80,9 +89,3 @@ Python, Angular
     │   ├── scaler_data.pkl
     |
     ├── README.md
-
-
-<h3>4Sight client interface<h3>
-
-<p>Login securely</p>
-![Dashboard](images/login.png)
