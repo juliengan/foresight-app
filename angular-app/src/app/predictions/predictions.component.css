@@ -11,6 +11,13 @@
     padding: 50px 70px;
 }
 
+.large-container {
+    margin-top: 70px;
+    padding: 40px 70px;
+    background-color: #9a8c98;
+    border-radius: 25px;
+}
+
 h1 {
     font-family: "Futura Medium";
     font-style: normal;

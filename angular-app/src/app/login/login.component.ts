@@ -28,8 +28,14 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         if (res.success) {
-          this.LoginService.setLoggedIn(true);
-          this.router.navigate(['/board']);
+          this.LoginService.setLoggedIn(true, this.email);
+          this.LoginService.getUserLevel().subscribe((res: any) => {
+            console.log(res.level);
+            if (res.level == 0) {
+              this.LoginService.isAdmin == true;
+            }
+            this.router.navigate(['/board']);
+          });
         }
       },
       (error) => {

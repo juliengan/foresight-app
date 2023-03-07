@@ -8,12 +8,15 @@ import { LoginService } from '../login/login.service';
 })
 export class NavComponent implements OnInit {
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private LoginService: LoginService) {}
 
   ngOnInit(): void {
     this.LoginService.loginEvent.subscribe((value) => {
       this.isLoggedIn = this.LoginService.getLoggedIn();
+      this.isAdmin = this.LoginService.getAdmin();
+      console.log(this.isAdmin)
     });
   }
 }

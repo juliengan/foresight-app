@@ -1,6 +1,13 @@
 <div class="screen">
     <div class="container">
-        <form method="post" action="predict" (ngSubmit)="onSubmit()">
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-body">
+                <img src="../../assets/board/bicycle.gif" width="518" height="518"
+                    alt="Bicycle Student GIF - Bicycle Student Cycling GIFs" style="max-width: 518px;">
+                <p>Loading . . .</p>
+            </div>
+        </ng-template>
+        <form method="post" action="predict" (ngSubmit)="onSubmit(content)">
             <div id="box">
                 <h1>Dataset to train</h1>
                 <select [ngModel]="selectedTable" (ngModelChange)="onChange($event)" name="table">
@@ -25,7 +32,7 @@
 </div>
 <div class="screen">
     <div class="large-container">
-        <h1>Sample of the selected data</h1>
+        <h1>Sample of the predicted data</h1>
         <div class="table">
             <table mat-table [dataSource]="data">
                 <!-- Column definitions -->
